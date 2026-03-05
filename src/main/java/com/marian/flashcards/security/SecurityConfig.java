@@ -33,7 +33,7 @@ public class SecurityConfig {
 
         config.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "https://YOUR-FRONTEND.vercel.app"
+                "https://flashcards-ai-orcin.vercel.app/"
         ));
 
         config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
