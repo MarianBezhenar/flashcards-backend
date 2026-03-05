@@ -40,7 +40,7 @@ public class AiGenerationService {
 
         return """
                 I am studying %s and focusing on %s.
-                Generate %d flashcards at %s difficulty.
+                Generate %d flashcards at %s difficulty (if needed give also a short example).
 
                 %s
 
