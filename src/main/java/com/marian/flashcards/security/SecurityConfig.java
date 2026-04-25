@@ -54,9 +54,10 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
                         .requestMatchers("/","/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/", "/index.html").permitAll()
@@ -65,7 +66,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/deck/**").authenticated()
                         .anyRequest().permitAll() //.anyRequest().authenticated()
                 )
-                .oauth2Login(Customizer.withDefaults())
+                .oauth2Login(oauth -> oauth
+                        .defaultSuccessUrl("https://flashcards-ai-orcin.vercel.app/", true)
+                )
                 .userDetailsService(userDetailsService)
                 .addFilterBefore(jwtAuthFilter,
                         UsernamePasswordAuthenticationFilter.class);
