@@ -65,6 +65,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/deck/**").authenticated()
                         .anyRequest().permitAll() //.anyRequest().authenticated()
                 )
+                .oauth2Login(Customizer.withDefaults())
                 .userDetailsService(userDetailsService)
                 .addFilterBefore(jwtAuthFilter,
                         UsernamePasswordAuthenticationFilter.class);
