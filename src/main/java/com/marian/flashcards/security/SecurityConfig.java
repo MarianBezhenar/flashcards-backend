@@ -69,6 +69,7 @@ public class SecurityConfig {
                 .oauth2Login(oauth -> oauth
                         .defaultSuccessUrl("https://flashcards-ai-orcin.vercel.app/", true)
                 )
+                .oauth2Login(Customizer.withDefaults())
                 .userDetailsService(userDetailsService)
                 .addFilterBefore(jwtAuthFilter,
                         UsernamePasswordAuthenticationFilter.class);
